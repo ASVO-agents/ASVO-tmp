@@ -3,302 +3,272 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ASVO — Paper Project Page</title>
-  <meta name="description" content="Project page for the ASVO paper: downloads, abstract, and method overview." />
+  <title>ASVO — Project Page</title>
+  <meta name="description" content="Paper project page: downloads, abstract, and workflow." />
 
   <style>
     :root{
-      --bg: #0b1020;
-      --card: rgba(255,255,255,0.06);
-      --card2: rgba(255,255,255,0.08);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.70);
-      --border: rgba(255,255,255,0.14);
-      --shadow: 0 18px 60px rgba(0,0,0,0.35);
-      --radius: 18px;
-      --maxw: 1100px;
+      --text:#111;
+      --muted:#444;
+      --muted2:#666;
+      --link:#1a73e8;
+      --chip:#111;
+      --bg:#ffffff;
+      --maxw:1100px;
+      --btn:#2b2b2b;
+      --btnHover:#1d1d1d;
+      --btnText:#fff;
     }
 
-    *{ box-sizing: border-box; }
-    html, body{ height:100%; }
+    *{ box-sizing:border-box; }
     body{
       margin:0;
-      color: var(--text);
-      background:
-        radial-gradient(1200px 700px at 20% 10%, rgba(110,168,255,0.25), transparent 60%),
-        radial-gradient(900px 600px at 80% 25%, rgba(164,110,255,0.18), transparent 55%),
-        radial-gradient(1200px 900px at 50% 110%, rgba(70,255,201,0.10), transparent 55%),
-        var(--bg);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      line-height: 1.55;
+      background:var(--bg);
+      color:var(--text);
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.45;
     }
-
-    a{ color: inherit; text-decoration: none; }
-    a:hover{ text-decoration: none; }
+    a{ color:var(--link); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
 
     .wrap{
       max-width: var(--maxw);
       margin: 0 auto;
-      padding: 40px 18px 80px;
+      padding: 44px 18px 80px;
     }
 
-    header{
-      padding: 26px 22px 22px;
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      border-radius: calc(var(--radius) + 6px);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
+    /* ===== Hero (top) ===== */
+    .hero{
+      text-align:center;
+      margin-top: 10px;
+    }
+    .title{
+      font-weight:800;
+      letter-spacing:-0.02em;
+      font-size: clamp(34px, 4.2vw, 54px);
+      line-height:1.12;
+      margin: 0 0 14px;
+    }
+    .venue{
+      font-weight:700;
+      color:#b11;
+      font-size: 18px;
+      margin: 2px 0 16px;
     }
 
-    .badge{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      padding: 7px 12px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .dot{
-      width:9px; height:9px; border-radius:999px;
-      background: rgba(110,168,255,0.95);
-      box-shadow: 0 0 0 4px rgba(110,168,255,0.15);
-    }
-
-    h1{
-      margin: 14px 0 6px;
-      font-size: clamp(26px, 3.2vw, 40px);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-    }
-
-    .subtitle{
-      color: var(--muted);
-      margin: 0 0 18px;
-      font-size: 15px;
-      max-width: 78ch;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    @media (max-width: 900px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-
-    .card{
-      border: 1px solid var(--border);
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 18px;
-      backdrop-filter: blur(10px);
-    }
-
-    .card h2{
+    .authors{
+      font-size: 18px;
       margin: 0 0 10px;
-      font-size: 16px;
-      letter-spacing: -0.01em;
+      color: var(--text);
     }
-    .card p{
-      margin: 0;
+    .authors a{
+      color: var(--link);
+      font-weight: 500;
+    }
+    .affils{
+      font-size: 17px;
       color: var(--muted);
+      margin: 0 0 6px;
+    }
+    .footnote{
       font-size: 14px;
+      color: var(--muted2);
+      margin: 0 0 18px;
     }
 
-    .btns{
+    /* ===== Button row ===== */
+    .btn-row{
       display:flex;
-      flex-wrap: wrap;
+      justify-content:center;
+      flex-wrap:wrap;
       gap: 10px;
-      margin-top: 12px;
+      margin: 18px 0 10px;
     }
-
     .btn{
       display:inline-flex;
       align-items:center;
-      gap:10px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.07);
-      transition: transform .08s ease, background .15s ease, border-color .15s ease;
-      font-weight: 600;
-      font-size: 14px;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--btn);
+      color: var(--btnText);
+      font-weight: 700;
+      font-size: 14.5px;
+      border: none;
+      transition: transform .08s ease, background .15s ease;
     }
     .btn:hover{
+      background: var(--btnHover);
+      text-decoration:none;
       transform: translateY(-1px);
-      background: rgba(255,255,255,0.10);
-      border-color: rgba(255,255,255,0.22);
     }
-
     .icon{
       width:18px; height:18px;
       display:inline-block;
     }
 
+    /* ===== Sections ===== */
     .section{
-      margin-top: 18px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      border-radius: var(--radius);
-      padding: 18px;
+      margin-top: 56px;
+      text-align:center;
     }
-
-    .section-title{
-      display:flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
+    .section h2{
+      font-size: 22px;
+      margin: 0 0 16px;
+      letter-spacing:-0.01em;
     }
-
-    .section-title h3{
-      margin: 0;
-      font-size: 16px;
-      letter-spacing: -0.01em;
-    }
-
-    .hint{
+    .section .sub{
+      max-width: 78ch;
+      margin: 0 auto 18px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 16px;
+    }
+
+    .card{
+      max-width: 980px;
+      margin: 0 auto;
+      border: 1px solid #e6e6e6;
+      border-radius: 16px;
+      padding: 18px;
+      text-align:left;
+      background:#fff;
     }
 
     .placeholder{
-      margin-top: 10px;
+      border: 1.5px dashed #cfcfcf;
       border-radius: 16px;
-      border: 1.5px dashed rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.03);
-      padding: 18px;
-      min-height: 220px;
+      padding: 26px;
+      min-height: 260px;
       display:flex;
       align-items:center;
       justify-content:center;
       text-align:center;
-      color: rgba(255,255,255,0.72);
+      color: #666;
+      background: #fafafa;
+    }
+
+    .divider{
+      height:1px;
+      background:#efefef;
+      margin: 42px auto 0;
+      max-width: 980px;
     }
 
     footer{
-      margin-top: 22px;
-      color: rgba(255,255,255,0.55);
-      font-size: 12px;
+      margin-top: 70px;
       text-align:center;
+      color:#888;
+      font-size: 13px;
     }
 
-    code.small{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 12px;
-      color: rgba(255,255,255,0.72);
-      background: rgba(255,255,255,0.06);
-      padding: 2px 6px;
+    /* small helper */
+    code.k{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size: 12.5px;
+      background:#f3f3f3;
+      border:1px solid #e7e7e7;
+      padding:2px 6px;
       border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.12);
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <header>
-      <div class="badge">
-        <span class="dot"></span>
-        <span>Paper Project Page</span>
+    <div class="hero">
+      <h1 class="title">ASVO: Social Value-Oriented Motivation for Human-like Multi-Agent Interactions</h1>
+
+      <!-- 会议/状态标签（你可以改成 AAMAS 2026 / Under Review / Preprint 等） -->
+      <div class="venue">AAMAS 2026 (Under Review)</div>
+
+      <!-- 作者：先占位，你按需要改名字/链接 -->
+      <div class="authors">
+        <a href="#" target="_blank" rel="noopener">Jingzhe Lin</a><sup>*</sup>,
+        <a href="#" target="_blank" rel="noopener">Co-author</a><sup>*</sup>,
+        <a href="#" target="_blank" rel="noopener">Co-author</a>
       </div>
 
-      <h1>ASVO: Social Value-Oriented Motivation for Human-like Multi-Agent Interactions</h1>
-      <p class="subtitle">
-        Minimal project page for the paper (downloads, abstract placeholder, and method workflow placeholder).
+      <!-- 单位：先占位 -->
+      <div class="affils">
+        Beijing Normal University, Beijing, China &nbsp;·&nbsp; (More affiliations here)
+      </div>
+
+      <div class="footnote">
+        <span>* Core contributors</span>
+      </div>
+
+      <!-- 按钮：Paper / Appendix / Code -->
+      <div class="btn-row">
+        <a class="btn" href="assets/paper.pdf" target="_blank" rel="noopener" aria-label="Download Paper PDF">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7"/>
+            <path d="M14 3v4a1 1 0 0 0 1 1h4" stroke="currentColor" stroke-width="1.7"/>
+            <path d="M12 11v7m0 0 3-3m-3 3-3-3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Paper
+        </a>
+
+        <a class="btn" href="assets/appendix.pdf" target="_blank" rel="noopener" aria-label="Download Appendix PDF">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7"/>
+            <path d="M14 3v4a1 1 0 0 0 1 1h4" stroke="currentColor" stroke-width="1.7"/>
+            <path d="M8 13h8M8 17h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          Appendix
+        </a>
+
+        <a class="btn" href="https://github.com/jingzhe-lin/ASVO" target="_blank" rel="noopener" aria-label="Open Code Repository">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9 19c-4 1.2-4-2-6-2m12 4v-3.2a2.8 2.8 0 0 0-.8-2.2c2.7-.3 5.5-1.3 5.5-6a4.7 4.7 0 0 0-1.2-3.2 4.4 4.4 0 0 0-.1-3.2s-1 .1-3.3 1.6a11.4 11.4 0 0 0-6 0C6.4 2.9 5.4 2.8 5.4 2.8a4.4 4.4 0 0 0-.1 3.2A4.7 4.7 0 0 0 4 9.6c0 4.7 2.8 5.7 5.5 6a2.8 2.8 0 0 0-.8 2.1V21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          代码
+        </a>
+      </div>
+
+      <div class="footnote" style="margin-top:10px;">
+        PDFs should be placed at <code class="k">assets/paper.pdf</code> and <code class="k">assets/appendix.pdf</code>.
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Abstract -->
+    <section class="section" id="abstract">
+      <h2>Abstract</h2>
+      <p class="sub">Temporary placeholder. You can replace this paragraph with the final abstract later.</p>
+
+      <div class="card">
+        <p style="margin:0; color:#333; font-size:16px;">
+          <strong>TODO:</strong> Paste your abstract here. Keep it concise (6–10 lines).
+        </p>
+      </div>
+    </section>
+
+    <!-- Workflow placeholder -->
+    <section class="section" id="workflow">
+      <h2>Method Workflow</h2>
+      <p class="sub">
+        Placeholder for your pipeline/overview figure. Later, upload an image (e.g., <code class="k">assets/workflow.png</code>)
+        and replace the box below with an <code class="k">&lt;img&gt;</code> tag.
       </p>
 
-      <div class="grid">
-        <div class="card">
-          <h2>1) Downloads & Code</h2>
-          <p>
-            Use the buttons below to download the paper and appendix, or jump to the code repository.
-          </p>
-
-          <div class="btns">
-            <a class="btn" href="assets/paper.pdf" target="_blank" rel="noopener">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/>
-                <path d="M14 3v4a1 1 0 0 0 1 1h4" stroke="currentColor" stroke-width="1.6"/>
-                <path d="M12 11v7m0 0 3-3m-3 3-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              Download Paper (PDF)
-            </a>
-
-            <a class="btn" href="assets/appendix.pdf" target="_blank" rel="noopener">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/>
-                <path d="M14 3v4a1 1 0 0 0 1 1h4" stroke="currentColor" stroke-width="1.6"/>
-                <path d="M8 13h8M8 17h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-              </svg>
-              Download Appendix (PDF)
-            </a>
-
-            <a class="btn" href="https://github.com/jingzhe-lin/ASVO" target="_blank" rel="noopener">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M9 19c-4 1.2-4-2-6-2m12 4v-3.2a2.8 2.8 0 0 0-.8-2.2c2.7-.3 5.5-1.3 5.5-6a4.7 4.7 0 0 0-1.2-3.2 4.4 4.4 0 0 0-.1-3.2s-1 .1-3.3 1.6a11.4 11.4 0 0 0-6 0C6.4 2.9 5.4 2.8 5.4 2.8a4.4 4.4 0 0 0-.1 3.2A4.7 4.7 0 0 0 4 9.6c0 4.7 2.8 5.7 5.5 6a2.8 2.8 0 0 0-.8 2.1V21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              View Code on GitHub
-            </a>
-          </div>
-
-          <p style="margin-top:12px; color: rgba(255,255,255,0.62); font-size: 13px;">
-            Put PDFs at <code class="small">assets/paper.pdf</code> and <code class="small">assets/appendix.pdf</code>.
-          </p>
-        </div>
-
-        <div class="card">
-          <h2>2) Abstract</h2>
-          <p>
-            Placeholder. Replace this text with your final abstract when ready.
-          </p>
-
-          <div class="section" style="margin-top:12px;">
-            <div class="section-title">
-              <h3>Abstract (Temporary)</h3>
-              <span class="hint">Edit in index.html</span>
-            </div>
-            <p>
-              We introduce ASVO, a framework that integrates structured social motivations with LLM-based agents.
-              (TODO: paste the final abstract here.)
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="section" style="margin-top:16px;">
-        <div class="section-title">
-          <h3>3) Method Workflow</h3>
-          <span class="hint">Placeholder for a pipeline figure</span>
-        </div>
-        <p class="hint">
-          You can later add an image like <code class="small">assets/overview.png</code> and replace the placeholder below with an &lt;img&gt; tag.
-        </p>
-
+      <div class="card">
         <div class="placeholder">
           <div>
-            <div style="font-weight:700; margin-bottom:8px;">Workflow figure placeholder</div>
-            <div style="max-width: 70ch; margin: 0 auto;">
-              Add your pipeline diagram here (e.g., Figure 2-style overview).
-              When ready, upload an image and replace this block with an image tag.
+            <div style="font-weight:800; font-size:16px; margin-bottom:8px;">Workflow figure placeholder</div>
+            <div style="max-width:70ch;">
+              Add your diagram here (leave empty for now).
             </div>
           </div>
         </div>
 
-        <!--
-          Example: replace the placeholder with this:
-
-          <img src="assets/workflow.png" alt="ASVO method overview workflow" style="width:100%; border-radius:16px; border:1px solid rgba(255,255,255,0.14); margin-top:12px;" />
+        <!-- Example usage:
+        <img src="assets/workflow.png"
+             alt="ASVO method workflow"
+             style="width:100%; border-radius:14px; border:1px solid #e6e6e6;" />
         -->
       </div>
-    </header>
+    </section>
 
     <footer>
       © <span id="y"></span> ASVO Project Page
