@@ -227,7 +227,7 @@
 
   /* 让整体区域不要居中缩进太多（可选） */
   max-width: min(1200px, 95vw);
-  margin: 0 auto;
+  margin: 80px auto;
 }
 
 .result-left{
@@ -237,6 +237,74 @@
 .result-right{
   flex: 1;               /* 右边占剩余空间 */
   min-width: 260px;
+}
+
+    .result-note{
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 720px;
+    }
+
+    /* ===== Examples ===== */
+    .examples-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+      max-width: min(1100px, 95vw);
+      margin: 0 auto 12px;
+      align-items:start;
+    }
+
+    .examples-grid img{
+      width:100%;
+      display:block;
+      border-radius:12px;
+      border:1px solid #e6e6e6;
+    }
+
+    .examples-caption{
+      margin: 14px auto 40px;
+      color: var(--muted);
+      font-size: 20px;
+      max-width: 760px;
+    }
+
+    /* ===== Layout tweak: balance result split ===== */
+.result-split{
+  display:flex;
+  gap:24px;
+  justify-content:space-between;
+  align-items:stretch;   /* stretch columns to equal height */
+  max-width: min(1200px, 95vw);
+  margin: 0 auto;
+}
+    .result-left{
+      flex: 1 1 50%;
+    }
+.result-right{
+  flex: 1 1 40%;
+  min-width: 320px;
+}
+
+.result-right .side-card{
+  height: 100%;
+  display:flex;
+  flex-direction:column;
+  margin-top: -15px;
+}
+.result-right .side-card img{
+  width:100%;
+  flex: 1 1 auto;
+  min-height: 420px;
+  height: auto;
+  object-fit:cover;
+
+}
+.result-right .side-card p{
+  margin:10px 0 0;
+  color:var(--muted);
+  font-size:14px;
 }
 
 /* 右侧卡片可选 */
@@ -329,8 +397,8 @@
 
       <!-- 作者：先占位，你按需要改名字/链接 -->
       <div class="authors">
-        <a href="#" target="_blank" rel="noopener">Jingzhe Lin</a><sup>1</sup>,
-        <a href="#" target="_blank" rel="noopener">Ceyao Zhang</a><sup>2,3</sup>,
+        <a href="https://openreview.net/profile?id=~Jingzhe_Lin1" target="_blank" rel="noopener">Jingzhe Lin</a><sup>1</sup>,
+        <a href="https://scholar.google.com/citations?user=OadTFGMAAAAJ" target="_blank" rel="noopener">Ceyao Zhang</a><sup>2,3</sup>,
         <a href="https://www.yangyaodong.com/" target="_blank" rel="noopener">Yaodong Yang</a><sup>2</sup>,
         <a href="https://cfcs.pku.edu.cn/wangyizhou/" target="_blank" rel="noopener">Yizhou Wang</a><sup>4</sup>,
         <a href="https://zhusongchun.net/" target="_blank" rel="noopener">Song-Chun Zhu</a><sup>4,5</sup>,
@@ -414,6 +482,41 @@
 
       </div>
     </section>
+
+<!-- Examples -->
+<section class="section" id="examples">
+  <h2>Examples</h2>
+
+  <div class="examples-grid">
+    <img src="assets/examples/workplace_a.jpg"
+         alt="ASVO agents collaborating in a workplace scenario" />
+    <img src="assets/examples/workplace_c.jpg"
+         alt="ASVO agents presenting results in a workplace scenario" />
+  </div>
+  <p class="examples-caption">
+    Simulated <stronge class="key">workplace</stronge> scenarios with different personality traits
+  </p>
+
+    <div class="examples-grid">
+    <img src="assets/examples/family_a.jpg"
+         alt="ASVO agents collaborating in a workplace scenario" />
+    <img src="assets/examples/family_c.jpg"
+         alt="ASVO agents presenting results in a workplace scenario" />
+  </div>
+  <p class="examples-caption">
+    Simulated <stronge class="key">family</stronge> scenarios with different personality traits
+  </p>
+
+  <div class="examples-grid">
+    <img src="assets/examples/classroom_a.jpg"
+         alt="ASVO agents collaborating in a workplace scenario" />
+    <img src="assets/examples/classroom_c.jpg"
+         alt="ASVO agents presenting results in a workplace scenario" />
+  </div>
+  <p class="examples-caption">
+    Simulated <stronge class="key">classroom</stronge> scenarios with different personality traits
+  </p>
+</section>
 
 <!-- Result -->
 <section class="section" id="results">
@@ -628,14 +731,21 @@
             </tbody>
           </table>
       </div>
+      <p class="result-note">
+        Across school, workplace, and family settings, ASVO consistently attains the highest average scores and the lowest variance, indicating both stronger overall performance and more stable behavior compared to ReAct, BabyAGI, LLMob, and D2A baselines.<br>
+      </p>
     </div>
 
     <!-- 右：留空/放东西 -->
     <div class="result-right">
       <!-- 你后面要放的内容写这里 -->
       <div class="side-card">
-        <h3>Notes</h3>
-        <p>Placeholder for additional content.</p>
+        <img src="assets/figure3_01.png"
+             alt="Figure 3: ASVO analysis"
+             style="width:100%; "/>
+        <p style="margin:10px 0 0; color:var(--muted); font-size:14px;">
+          ASVO’s action distribution stays aligned with its configured SVO persona, cooperative under prosocial setups and increasingly competitive as the angle turns individualistic, whereas baselines with identical profiles produce mixed behaviors that stray from their intended orientations.
+        </p>
       </div>
     </div>
   </div>
